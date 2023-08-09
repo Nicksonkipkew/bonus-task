@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'secret_key'  # Change this to a secure secret key
 
-# Create the uploads directory if it doesn't exist
+# Create the uploads directory if it doesn't exists
 if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
