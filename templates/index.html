@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Items</title>
+</head>
+<body>
+    <h1>Items</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>
+                    <form action="{{ url_for('delete', item_id=item[0]) }}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                    <td>
+                    <a href="{{ url_for('edit', item_id=item[0]) }}">Edit</a>
+                    </td>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('create') }}">Create Item</a>
+    <br>
+    <br>
+    <form action="{{ url_for('search') }}" method="POST">
+        <input type="text" name="search_query" placeholder="Search">
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    <form action="{{ url_for('sort') }}" method="POST">
+        <select name="sort_attribute">
+            <option value="name">Name</option>
+            <option value="description">Description</option>
+        </select>
+        <input type="submit" value="Sort">
+    </form>
+    <br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
